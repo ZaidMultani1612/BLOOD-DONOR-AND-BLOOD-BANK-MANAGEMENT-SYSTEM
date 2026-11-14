@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # HealthTech – Blood Donor & Blood Bank Management System
 
 A complete, modern, responsive, and functional **Blood Donor & Blood Bank Management System** developed using the full **MERN stack** (MongoDB, Express.js, React.js with Vite, and Node.js) with Tailwind CSS, Lucide Icons, Leaflet interactive maps, and Recharts analytics.
@@ -201,3 +202,7 @@ You can log in directly using any of the accounts below:
 ## 🛡️ Medical Verification Notice
 In accordance with professional medical software standards:
 *Blood group matching alone does not establish medical suitability for transfusion. All clinical transfusions require antibody screening, cross-matching, and verification by certified medical and blood banking professionals.*
+=======
+# BLOOD-DONOR-AND-BLOOD-BANK-MANAGEMENT-SYSTEM
+Blood Donor and Blood Bank Management System for Full Stack learning
+>>>>>>> a021d80b48ff33ee9eeeb9262b713eeed5a228c5
