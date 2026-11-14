@@ -1,0 +1,15 @@
+{
+  "name": "healthtech-blood-bank-management-system",
+  "version": "2.0.0",
+  "description": "HealthTech – Blood Donor & Blood Bank Management System (MERN Stack)",
+  "scripts": {
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "seed": "cd backend && npm run seed",
+    "build:frontend": "cd frontend && npm run build"
+  },
+  "keywords": ["blood-bank", "donor", "mern", "react", "nodejs", "mongodb"],
+  "author": "HealthTech Engineering Team",
+  "license": "MIT"
+}
