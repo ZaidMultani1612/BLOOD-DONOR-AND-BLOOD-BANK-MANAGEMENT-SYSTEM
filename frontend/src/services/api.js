@@ -1,14 +1,11 @@
 import axios from 'axios';
 
-// Automatically uses relative '/api' if on the same Render domain, or full Render URL when running locally
+// Backend API URL on Render
 const getBaseURL = () => {
   if (import.meta.env.VITE_API_URL) {
     return import.meta.env.VITE_API_URL;
   }
-  if (typeof window !== 'undefined' && window.location.origin.includes('onrender.com')) {
-    return `${window.location.origin}/api`;
-  }
-  return 'https://blood-donor-and-blood-bank-management.onrender.com/api';
+  return 'https://f-blood-donor-and-blood-bank-management.onrender.com/api';
 };
 
 const api = axios.create({

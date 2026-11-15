@@ -18,9 +18,7 @@ const ChatsPage = () => {
   useEffect(() => {
     const socketURL =
       import.meta.env.VITE_SOCKET_URL ||
-      (typeof window !== 'undefined' && window.location.origin.includes('onrender.com')
-        ? window.location.origin
-        : 'https://blood-donor-and-blood-bank-management.onrender.com');
+      'https://f-blood-donor-and-blood-bank-management.onrender.com';
 
     socketRef.current = io(socketURL);
 
