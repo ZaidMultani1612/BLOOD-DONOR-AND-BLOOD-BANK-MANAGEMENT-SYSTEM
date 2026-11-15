@@ -3,6 +3,9 @@ dotenv.config();
 
 import express from 'express';
 import http from 'http';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 import { Server as SocketIOServer } from 'socket.io';
 import cors from 'cors';
 import morgan from 'morgan';
@@ -26,6 +29,9 @@ import chatRoutes from './routes/chatRoutes.js';
 import User from './models/User.js';
 import Chat from './models/Chat.js';
 import { seedData } from './utils/seed.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const server = http.createServer(app);
@@ -87,8 +93,21 @@ app.use('/api/chats', chatRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'OK', timestamp: new Date() });
+  res.status(200).json({ status: 'OK', message: 'HealthTech API running smoothly', timestamp: new Date() });
 });
+
+// Serve frontend static build if available (e.g. Render single deployment)
+const frontendDistPath = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
 
 // Centralized error handling
 app.use(errorHandler);
@@ -108,6 +127,6 @@ connectDB().then(async () => {
   }
 
   server.listen(PORT, () => {
-    console.log(`[HealthTech Server] Running on http://localhost:${PORT}`);
+    console.log(`[HealthTech Server] Running on port ${PORT}`);
   });
 });

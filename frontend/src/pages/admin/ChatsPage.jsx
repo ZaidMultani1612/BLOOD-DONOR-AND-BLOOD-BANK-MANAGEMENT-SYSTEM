@@ -16,7 +16,13 @@ const ChatsPage = () => {
 
   // Initialize socket
   useEffect(() => {
-    socketRef.current = io('http://localhost:5000');
+    const socketURL =
+      import.meta.env.VITE_SOCKET_URL ||
+      (typeof window !== 'undefined' && window.location.origin.includes('onrender.com')
+        ? window.location.origin
+        : 'https://blood-donor-and-blood-bank-management.onrender.com');
+
+    socketRef.current = io(socketURL);
 
     socketRef.current.on('receive_message', (newMsg) => {
       setMessages((prev) => [...prev, newMsg]);
