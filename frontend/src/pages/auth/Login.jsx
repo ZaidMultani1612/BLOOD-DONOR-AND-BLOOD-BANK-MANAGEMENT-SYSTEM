@@ -27,7 +27,11 @@ const Login = () => {
       else if (user.role === 'hospital') navigate('/hospital/dashboard');
       else navigate('/admin/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Please verify credentials.');
+      if (!err.response) {
+        setError('Cannot connect to backend server. Render free tier takes ~30-50s to wake up if inactive. Please wait 30 seconds and try again.');
+      } else {
+        setError(err.response?.data?.message || 'Login failed. Please verify credentials.');
+      }
     } finally {
       setLoading(false);
     }

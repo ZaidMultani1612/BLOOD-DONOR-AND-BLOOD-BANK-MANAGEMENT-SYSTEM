@@ -93,7 +93,14 @@ app.use('/api/chats', chatRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
-  res.status(200).json({ status: 'OK', message: 'HealthTech API running smoothly', timestamp: new Date() });
+  const isDbConnected = mongoose.connection.readyState === 1;
+  res.status(200).json({
+    status: 'OK',
+    message: 'HealthTech API running smoothly',
+    database: isDbConnected ? 'Connected' : 'Disconnected',
+    mongoUriConfigured: !!process.env.MONGO_URI,
+    timestamp: new Date(),
+  });
 });
 
 // Serve frontend static build if available (e.g. Render single deployment)
